@@ -1,0 +1,57 @@
+﻿@model NETCOREMONGO2.Models.Customer
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>Customer Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.productId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+        <dd>
+            <div style="width:auto;height:210px; border-style: solid;">
+                @foreach (var item in ViewBag.arr)
+                {
+                    if (item != "")
+                    {
+                        <img style="width:220px;height:200px;float:left; padding:5px;" src="~/data/@item" />
+
+                    }
+                }
+            </div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd>
+           
+            <div style="width:auto;height:210px; border-style: solid;">
+                @Html.DisplayFor(model => model.description)
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Index">Back to List</a>
+</div>
