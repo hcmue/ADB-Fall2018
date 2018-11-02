@@ -1,0 +1,1 @@
+db.zips.find({"state":"MA","pop":{$lte: 21900}},{"state":1,"_id":0}).sort({"pop":-1}).limit(30).skip(0).explain("executionStats")

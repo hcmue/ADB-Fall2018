@@ -1,0 +1,186 @@
+Các thao tác câu lệnh trên MogoDB :
+khởi động console 2:
+	+ Truy cập vào thư mục : cd MongoDB\Server\4.0\bin 
+	+ Lệnh liệt kê : dir
+	+ Xem trong hệ CSDL NoSQL có bao nhiêu database : show dbs
+	+ Muốn sử dụng cái db nào : use local
+	+ Để biết đang sử dụng db nào : db
+	+ Tạo mơi db : uss shopping
+	+ db mới tạo không có bất kỳ thông tin gì nên MG không thực hiện , muốn db tồn tại thì ta phải tạo collection cho nó 
+	+Tạo collection cho db mới : db.createCollection("book")
+	+ Dùng mũi tên lên xuống để tìm csc lệnh đã gõ 
+	+ Hiển thị cacsc collection trong db : dùng show collection
+	+ Xoa db :db.dropDatabase
+
+Các câu lệnh truy vấn MogoDB :
+	+ thêm 1 document vào 1 collection : db.uers.insert("chuoi JSON")
+	+ Xem lại dữ liệu vừa nhập : db.user.find()
+	+ Hiển thị chuỗi JSON trên màn hình dos : db.user.find().pretty()
+	+Co thể chứa một mảng trong 1 field nào đó 
+	+ Có thể boorsung bất kỳ field nào cần thiết mà không cần thiết lập mặc định
+	+Thêm theo cách mới : khai báo đối tượng var user = () 
+							gán giá trị user.uer_name = "Duan3" (thuộc tính user_name của đối tượng user có hía trị là duan3)
+	+Lưu đối tượng user vào collection user : db.user.save(user)
+	+ thiết lập document theo định dạng JSON
+	
+	
+	+export database : +export JSON : Dùng phần mềm có sẵn trong NoSQL : mongoexport 
+						lệnh : ra màn hình chính : mongoexport --db shopping --collection user --out user.json (file export sẽ lưu trong bin nếu không truyền đường dẫn)
+						lệnh ngắn gọn : mongoexport -d shopping -c user -o user.json 
+						+export file csv : mongoexport -d shopping -c user --type =csv -o  C:\MongoDB\data\export\user.csv -f id,user_name,password,skill,status
+	+Xóa collection trong database : db.uer.drop()
+	+import tập tin JSON : mongoimport -d shopping -c user  --file "C:\MongoDB\data\export\user.json"
+	mongoimport -d shopping -c user --type=csv --file "C:\MongoDB\data\export\ user.json" --headerline
+	
+collection = table
+document   = row
+field      = Properties
+
+
+Export cả database : mongodump -d shopping -o "C:\MongoDB\data\export"
+những file trong database export là bson và json
+thông thưỡng khi export 1 database thì dữ liệu thường rất là nhiều , nên thương sẽ định dang các file bson và json về dạng zip
+
+mongodump -d shopping -o "C:\MongoDB\data\export" --gzip
+
+export database trên 1 file : mongodump -d shopping --gzip archive=shopping.2210.gz
+
+import cả database : mongorestore -d shopping "C:\MongoDB\data\export\shopping1"
+
+mongorestore -d shopping "C:\MongoDB\data\export\shopping" --gzip 
+
+insert bằng javascript : load("C:/MongoDB/js/insert1.js")
+insert nhiều document bằng javascript : 
+
+update các document trong các collection : tìm từ khóa mongodb update document :
+
+	db.collection.update(
+   <query>,
+   <update>,
+   {
+     upsert: <boolean>, 
+     multi: <boolean>,//them tren nhieu document
+     writeConcern: <document>,
+     collation: <document>,
+     arrayFilters: [ <filterdocument1>, ... ]
+   }
+)
+
+cú pháp : 
+
+	db.user.update(
+   {user_name:"Duan1"},
+   {$set :{skill:["code","read"]}},
+   {
+     upsert: false,
+     multi: false,
+     
+   }
+)
+
+kiểm tra cái filde đó có tồn tại hay không
+
+{ password: { $exists: false} }
+
+db.user.update(
+   {email:{$exists:false}},
+   {$set :{email:"duan@gmail.com",status:"active"}},
+   {
+     upsert: false,
+     multi: false,
+     
+   }
+   
+xoa filde trong document :
+
+	db.user.update(
+	   {},
+	   {$unset :{skill:""}},
+	   {
+		 upsert: false,
+		 multi: true,
+		 
+	   }
+	)
+xoa document trong collection :
+	db.collection.remove(
+   <query>,
+   {
+     justOne: <boolean>,
+     writeConcern: <document>
+   }
+)
+cu phap :
+	db.user.remove(
+	   {user_name:"Duan"},
+	   {
+		 justOne: true,
+	   
+	   }
+	)
+
+xoa theo toan tu : 
+	db.user.remove(
+	   {age:{$eq: 38}},
+	   {
+		 justOne: true,
+	   
+	   }
+	)
+
+	
+tìm kiếm dữ liệu find() : db.user.find().count //đếm số lượng document truy vấn được
+tìm kiếm dữ liệu find()có điều kiện : db.user.find({user_name:"Duan1"}).count()
+
+hiển thị tùy chọn : db.user.find({},{"user_name":1,"status":1})
+
+hiển thị giới hạn : db.user.find({},{"user_name":1,"status":1}).limit(2)
+
+hiển thị lấy giới hạn từ một vị trí : db.user.find({},{"user_name":1,"status":1}).limit(2).skip(1)
+
+
+sắp xếp dữ liệu : tìm từ khóa mongodb sort
+
+	cú pháp : db.orders.find().sort( { amount: -1 } ) //-1 sẽ xếp theo chiều giảm dần / 1 xếp theo chiều tăng 
+single field index :
+
+  db.zips.find({"pop":{$lt:4546}}).sort({"pop":-1})
+  
+xem thời gian thực thi câu truy vấn : db.zips.find({"pop":4546}).explain("executionStats")
+
+đánh chỉ số index : 
+	db.zips.createIndex({"pop":1})
+
+xem danh sách chỉ số : db.zips.getIndexes
+	
+Single field index :
+		Xóa chỉ số : db.zips.dropIndex("pop_1")
+
+compound indexes : đánh nhiều index cho field thôi
+
+unique index : tạo các index tồn tại duy nhất trong 1 collection : db.members.createIndex( { "user_id": 1 }, { unique: true } )
+
+sparse index : db.user.createIndex({deparment:1},{sparse:true})
+
+
+TTL index (time - to -live) index :
+	Dùng để xóa document sau 1 khoảng thời gian : db.user.createIndex({"create_date":1},{ expireAfterSeconds: 30 })
+	
+	
+	Install-Package mongocsharpdriver
+	
+	
+	
+	
+	
+	http://mongodb.github.io/mongo-csharp-driver/2.7/getting_started/quick_tour/
+	
+	
+	
+	var filterBuilder = Builders<BsonDocument>.Filter;
+var filter = filterBuilder.Gt("i", 50) & filterBuilder.Lte("i", 100);
+var cursor = collection.Find(filter).ToCursor();
+
+
+
+

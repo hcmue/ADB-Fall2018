@@ -1,0 +1,4 @@
+user :
+{user_name: "Duan",password:"123456",email:"duan@gmail.com",status:"active"}
+{user_name: "Duan1",password:"123456",email:"duan1@gmail.com",skill:["PHP","Jquery","Java"],status:"active"}
+đây là 1 chuỗi JSON -> add chuỗi này vào collection User 
