@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+  
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="bg-info text-white">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" class="text-danger" class="font-weight-bold">OhanaFood</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" class="text-danger">Home</a></li>
+                <li><a href="#" class="text-danger">Món Ăn</a></li>
+                <li><a href="#" class="text-danger">Đồ Uống</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+
+    </div>
+    <div class="footer-top-area" style="font-family:Tahoma, sans-serif;">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2><span>OhanaFood!!!</span></h2>
+                        <p>Ohana trong tiếng nhật có nghĩa là "Gia Đình", đúng vậy!, gia đình là thứ OhanaFood muốn mang lại cho chình gia đình của bạn, nhưng phút giầy ăn uống vui vẻ bênh những người thân yêu của mình!</p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Người Dùng </h2>
+                        <ul>
+                            <li><a href="">Tài khoản của tôi</a></li>
+                            <li><a href="">Lịch sử Order</a></li>
+                            <li><a href="">Danh sách món ăn yêu thích của tôi</a></li>
+                        
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Khuyên Dùng</h2>
+                        <ul>
+                            <li><a href="">Món ăn đặc trưng </a></li>
+                            <li><a href="">Món ăn chay</a></li>
+                            <li><a href="">Món khai vị</a></li>
+                            <li><a href="">Món món chính</a></li>
+                            <li><a href="">Món tráng miệng</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Bản Tin</h2>
+                        <p>Hãy đăng nhập 1 tài khoản để theo dõi cũng nhưng được thông báo những món ăn mới nhất, đồng thời thông tin về những chính sách ưu đãi nếu có tại OhanaFood!</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Type your email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

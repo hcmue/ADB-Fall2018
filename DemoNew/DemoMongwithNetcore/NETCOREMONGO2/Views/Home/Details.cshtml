@@ -1,0 +1,70 @@
+﻿@model NETCOREMONGO2.Models.monAn
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_abc.cshtml";
+}
+<div>
+    <h4>Chi Tiết:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label">Mã món:</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.maMon)
+        </dd>
+        <dt>
+            <label class="control-label">Loại:</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.loai)
+        </dd>
+        <dt>
+            <label class="control-label">Tên món:</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tenMon)
+        </dd>
+        <dt>
+            <label class="control-label">Giá:</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+        <dt>
+            <label class="control-label">Đầu Bếp:</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dauBep)
+        </dd>
+        <dt>
+            <label class="control-label">Hình ảnh</label>
+        </dt>
+        <dd>
+            <div style="width:auto;height:210px; ">
+                @foreach (var item in ViewBag.arr)
+                {
+                    if (item != "")
+                    {
+                        <img style="width:220px;height:200px;float:left; padding:5px;" src="~/data/@item" class="img-thumbnail" alt="Cinque Terre" />
+
+                    }
+                }
+            </div>
+        </dd>
+        <dt>
+            <label class="control-label">Mô tả:</label>
+        </dt>
+        <dd>
+
+            <div style="width:auto;height:auto; " class="jumbotron">
+                <p class="text-info">@Html.DisplayFor(model => model.moTa)</p>
+            </div>
+        </dd>
+
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Index">Back to List</a>
+</div>

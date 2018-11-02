@@ -1,0 +1,66 @@
+﻿@model IEnumerable<NETCOREMONGO2.Models.monAn>
+@{
+
+    Layout = "~/Views/Shared/_abc.cshtml";
+}
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<h2>Quản Lý Món Ăn</h2>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<table class="table table-bordered" style="width:600px">
+    <thead>
+        <tr>
+            <th>
+                <p>Mã Món Ăn</p>
+            </th>
+            <th>
+                <p>Loại</p>
+            </th>
+            <th>
+                <p>Tên Món Ăn</p>
+            </th>
+            <th>
+                <p>Giá Bán</p>
+            </th>
+            <th>
+                <p>Đầu Bếp</p>
+            </th>
+            <th>
+                <p>Actions</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.maMon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.loai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenMon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dauBep)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.maMon }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.maMon }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.maMon })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
