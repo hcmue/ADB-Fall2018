@@ -1,0 +1,39 @@
+create database QLDA 
+use QLDA
+go
+create table NHANVIEN
+(	
+	MANV varchar(10) primary key ,
+	HONV varchar(30),
+	TENLOT varchar(30),
+	TENNV varchar(30),
+	NGSINH date ,
+	PHAI varchar(10),
+	DCHI varchar(30),
+	MA_NQL varchar(30),
+	PHONG varchar(10) ,
+	MLUONG int,
+
+)
+go
+
+create table THANNHAN
+(
+	MANV varchar(10) ,
+	MATN varchar(10) ,
+	TENTN varchar(30),
+	PHAI varchar(10),
+	NGSINH date,
+	QUANHE varchar(10),
+	primary key(MANV,MATN),
+	foreign key(MANV) references NHANVIEN(MANV) 
+)
+go
+create table PHANCONG
+(
+	MANV varchar(10),
+	MADA varchar(10),
+	THOIGIAN date,
+	primary key(MANV,MADA),
+	foreign key(MANV) references NHANVIEN(MANV)
+)
