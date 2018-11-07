@@ -90,8 +90,55 @@ namespace ADBTeam13_DB4O
 
         public static List<Khoa> QueriesSbject2_stc2()
         {
-            return null;
+            IObjectContainer db = Db4oEmbedded.OpenFile(DbFileName);
+            // get all khoa
+            IList<Khoa> kh = db.Query(delegate (Khoa k) {
+                return k.TenKhoa != "";
+            });
+            List<Khoa> khoas = kh.ToList();
+
+            // get all monhoc
+            IList<MonHoc> mh = db.Query(delegate (MonHoc m) {
+                return m.TenMon != "";
+            });
+
+            List<MonHoc> monHocs = mh.ToList();
+
+            //list ket qua
+            List<Khoa> khoa = new List<Khoa>();
+            foreach (Khoa k in khoas)
+            {
+                int nMonhoc = 0;
+                foreach (MonHoc m in monHocs)
+                {
+                    if (m.KhoaQuanLy == k && m.SoTinChi > 2)
+                    {
+                        nMonhoc += 1;
+                    }
+                }
+                if (nMonhoc > 2)
+                {
+                    khoa.Add(k);
+                }
+            }
+            db.Close();
+            return khoa;
         }
+
+        public static List<MonHoc> GetQuery5()
+        {
+            IObjectContainer db = Db4oEmbedded.OpenFile(DbFileName);
+            IList<MonHoc> mh = db.Query(delegate (MonHoc m)
+            {
+                return m.MaMH != 0 && m.TenMon.ToLower().Contains("cơ sở dữ liệu");
+            });
+
+            List<MonHoc> monHocs = mh.ToList();
+            db.Close();
+            return monHocs;
+
+        }
+
 
         public static void addKhoa(string makhoa,string tenkhoa,string diachi,string dienthoai)
         {

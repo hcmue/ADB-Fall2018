@@ -43,6 +43,7 @@
             this.txtMaKhoa = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnQuery5 = new System.Windows.Forms.Button();
             this.btnLoadALLMon = new System.Windows.Forms.Button();
             this.btnThemMon = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.txtMaMH = new System.Windows.Forms.TextBox();
             this.txtTenMH = new System.Windows.Forms.TextBox();
             this.dgvDSMonHoc = new System.Windows.Forms.DataGridView();
-            this.btnQuery5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSKhoa)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,6 +113,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Query 6";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnThemKhoa
             // 
@@ -211,6 +212,16 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin Môn học";
+            // 
+            // btnQuery5
+            // 
+            this.btnQuery5.Location = new System.Drawing.Point(288, 119);
+            this.btnQuery5.Name = "btnQuery5";
+            this.btnQuery5.Size = new System.Drawing.Size(75, 23);
+            this.btnQuery5.TabIndex = 12;
+            this.btnQuery5.Text = "Query 5";
+            this.btnQuery5.UseVisualStyleBackColor = true;
+            this.btnQuery5.Click += new System.EventHandler(this.btnQuery5_Click);
             // 
             // btnLoadALLMon
             // 
@@ -336,16 +347,6 @@
             this.dgvDSMonHoc.Size = new System.Drawing.Size(555, 195);
             this.dgvDSMonHoc.TabIndex = 4;
             this.dgvDSMonHoc.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSMonHoc_RowEnter);
-            // 
-            // btnQuery5
-            // 
-            this.btnQuery5.Location = new System.Drawing.Point(288, 119);
-            this.btnQuery5.Name = "btnQuery5";
-            this.btnQuery5.Size = new System.Drawing.Size(75, 23);
-            this.btnQuery5.TabIndex = 12;
-            this.btnQuery5.Text = "Query 5";
-            this.btnQuery5.UseVisualStyleBackColor = true;
-            this.btnQuery5.Click += new System.EventHandler(this.btnQuery5_Click);
             // 
             // Form1
             // 

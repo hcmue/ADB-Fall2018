@@ -89,9 +89,12 @@ namespace ADBTeam13_DB4O
 
         private void btnQuery5_Click(object sender, EventArgs e)
         {
-            
+            dgvDSMonHoc.DataSource = DataHelper.GetQuery5();
         }
 
-
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dgvDSKhoa.DataSource = DataHelper.QueriesSbject2_stc2();
+        }
     }
 }
