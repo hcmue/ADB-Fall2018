@@ -1,0 +1,10 @@
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\bin\Debug\ADBMidTermTeam05.exe.config
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\bin\Debug\ADBMidTermTeam05.exe
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\bin\Debug\ADBMidTermTeam05.pdb
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\bin\Debug\Db4objects.Db4o.dll
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\bin\Debug\Db4objects.Db4o.xml
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\obj\Debug\ADBTeam05_DB40.csprojAssemblyReference.cache
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\obj\Debug\ADBTeam05_DB40.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\obj\Debug\ADBTeam05_DB40.csproj.CopyComplete
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\obj\Debug\ADBMidTermTeam05.exe
+C:\Users\Asus\source\repos\ADBMidTermTeam05\ADBMidTermTeam05\obj\Debug\ADBMidTermTeam05.pdb
