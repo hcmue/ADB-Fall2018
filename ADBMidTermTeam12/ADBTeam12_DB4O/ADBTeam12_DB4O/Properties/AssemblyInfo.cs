@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ADBTeam12SpatialDB")]
+[assembly: AssemblyTitle("ADBTeam12_DB4O")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ADBTeam12SpatialDB")]
+[assembly: AssemblyProduct("ADBTeam12_DB4O")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2cd3a4a4-af3c-4b4d-a631-bef8c64cef18")]
+[assembly: Guid("19704561-1dd3-47c3-af3e-452a460d6c2d")]
 
 // Version information for an assembly consists of the following four values:
 //

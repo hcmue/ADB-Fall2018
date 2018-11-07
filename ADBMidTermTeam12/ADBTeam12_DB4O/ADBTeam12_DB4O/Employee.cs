@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MidTerm2017
+namespace ADBTeam12_DB4O
 {
     [Serializable]
     public class Employee
