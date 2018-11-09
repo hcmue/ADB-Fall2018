@@ -1,0 +1,33 @@
+
+1 document chứa nhiều document gọi là embedded or model one - to - many relational
+
+db.Khoa.insert({
+   class: "CNTT.A",
+   members: [
+                {
+                  name: "Nguyen Van A",
+                  password: "123",
+                  gmail: "A@gmail.com",
+                  active: "1"
+                },
+                {
+                  name: "Nguyen Van B",
+                  password: "123",
+                  gmail: "Bgmail.com",
+                  active: "1"
+                },
+				{
+                  name: "Nguyen Van C",
+                  password: "123",
+                  gmail: "A@gmail.com",
+                  active: "1",
+				  skill:["Code","Sing"]
+                },
+            ]
+	}
+ )
+ 
+ Tìm kiếm đơn giản :
+  db.HocSinh.find( { members:[{name: "Nguyen Van B",password: "123",gmail: "Bgmail.com",active: "1"}] } )
+  
+  db.HocSinh.find( { "members.name":"Nguyen Van C"} )

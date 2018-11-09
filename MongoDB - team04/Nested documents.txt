@@ -1,0 +1,17 @@
+Insert document chưa document :
+b.HocSinh.insertMany( [
+   { name: "A", old: 20, size: { h: 1.65, w: 50 }, class: "CNTT.C" },
+   { name: "B", old: 22, size: { h: 1.7, w: 65}, class: "CNTT.A" },
+   { name: "C", old: 21, size: { h: 1.54, w: 53 }, class: "CNTT.B" },
+   { name: "D", old: 23, size: { h: 1.74, w: 70}, class: "CNTT.C" },
+]);
+
+Tìm kiếm document trong document :
+db.HocSinh.find(  {size: { h: 1.65, w: 50 } } )
+
+Tìm kiếm có điều kiện & toán tử :
+
+db.HocSinh.find( { "size.h": { $gt: 1.5 } } )
+
+db.HocSinh.find( { "size.h": { $gt: 1.5 } , "size.w":{$lte: 65}  } )
+
