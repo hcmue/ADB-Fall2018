@@ -22,7 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFirestoreModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

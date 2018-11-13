@@ -4,8 +4,6 @@ import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import * as firebase from 'firebase';
-import { DatePipe } from '@angular/common';
 
 export interface TypeProduct {
   value: string;
@@ -30,9 +28,10 @@ export class ProductComponent implements OnInit {
 
   public products: Observable<any[]>;
   public itemCollection: AngularFirestoreCollection<Product>;
+  public searchCollection: AngularFirestoreCollection<Product>;
   temp: Product = new Product();
   srcImg = '';
-  selectType = '';
+  selectType = 'None';
   // List Type of Product Mock
   typeProducts: TypeProduct[] = [
     { value: 'type-01', viewValue: 'Drink Water' },
@@ -56,6 +55,7 @@ export class ProductComponent implements OnInit {
 
   constructor(public db: AngularFirestore, private http: HttpClient) {
     this.itemCollection = this.db.collection('items');
+    this.searchCollection = this.db.collection('items', ref => ref.where('name', '==', 'Bánh Mì Kẹp Thịt'));
     this.products = this.itemCollection.snapshotChanges().pipe(
       map(action => action.map(a => {
         const data = a.payload.doc.data() as Product;
@@ -64,8 +64,12 @@ export class ProductComponent implements OnInit {
       }))
     );
   }
+  uploadFile(event) {
+
+  }
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
+    this.srcImg = this.selectedFile.name;
   }
   onSelectItem(prod: Product) {
     this.srcImg = prod.image;
@@ -88,43 +92,36 @@ export class ProductComponent implements OnInit {
       price: product.price,
       type: product.type
     });
+    this.itemCollection.add(product);
   }
   updateProduct(pProductID: string) {
-    if (this.productProfile.valid) {
-      this.temp.productID = pProductID;
-      this.temp.name = this.productProfile.get('nameProduct').value;
-      this.temp.price = this.productProfile.get('priceProduct').value;
-      if (this.productProfile.get('typeProduct').value === '') {
-        this.temp.type = this.selectType;
-      } else {
-        this.temp.type = this.productProfile.get('typeProduct').value;
-      }
-      if (this.selectedFile.name === '') {
-        this.temp.image = this.srcImg;
-      } else { this.temp.image = this.selectedFile.name; }
-      this.temp.dManufacture = this.productProfile.get('dManu').value;
-      this.temp.dExpire = this.productProfile.get('dExpire').value;
-      this.temp.manufactures = this.productProfile.get('manuProd').value;
-      const data = JSON.parse(JSON.stringify(this.temp));
-      this.itemCollection.doc(data.productID).set({
-        dExpire: data.dExpire,
-        dManufacture: data.dManufacture,
-        manufactures: data.manufactures,
-        image: data.image,
-        name: data.name,
-        price: data.price,
-        type: data.type
-      });
-      this.srcImg = data.image;
-      this.selectType = data.type;
-      this.productProfile.patchValue({
-        nameProduct: data.name,
-        priceProduct: data.price,
-        manuProd: data.manufactures,
-        dManu: data.dManufacture,
-        dExpire: data.dExpire
-      });
+    this.temp.productID = pProductID;
+    this.temp.name = this.productProfile.get('nameProduct').value;
+    this.temp.price = this.productProfile.get('priceProduct').value;
+    if (this.productProfile.get('typeProduct').value === '') {
+      this.temp.type = this.selectType;
+    } else {
+      this.temp.type = this.productProfile.get('typeProduct').value;
     }
+    if (this.selectedFile === undefined) {
+      this.temp.image = this.srcImg;
+    } else {
+      this.temp.image = this.selectedFile.name;
+    }
+    this.temp.dManufacture = this.productProfile.get('dManu').value;
+    this.temp.dExpire = this.productProfile.get('dExpire').value;
+    this.temp.manufactures = this.productProfile.get('manuProd').value;
+    const data = JSON.parse(JSON.stringify(this.temp));
+    console.log(data);
+    this.itemCollection.doc(data.productID).set({
+      dExpire: data.dExpire,
+      dManufacture: data.dManufacture,
+      manufactures: data.manufactures,
+      image: data.image,
+      name: data.name,
+      price: data.price,
+      type: data.type
+    });
   }
   deleteProduct(productkey: string) {
     this.itemCollection.doc(productkey).delete().then(function () {

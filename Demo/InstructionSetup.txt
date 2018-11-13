@@ -1,0 +1,2 @@
+1. Run "npm start" in cmd to install library for angular project
+2. Run "ng s" to start localhost, run project demo
