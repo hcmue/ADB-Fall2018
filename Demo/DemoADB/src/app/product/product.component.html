@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-4 col-xs-6" *ngFor="let pitem of products|async; let i=index" (click)="onSelectItem(pitem)">
+    <div class="product">
+      <div class="product-img">
+        <img src="../../assets/img/{{pitem.image}}" alt="">
+        <div class="product-label">
+          <span class="new">NEW</span>
+        </div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">{{pitem.manufactures}}</p>
+        <h3 class="product-name">{{pitem.name}}</h3>
+        <h4 class="product-price">{{pitem.price}} VNĐ</h4>
+        <div class="product-btns">
+          <button class="quick-view"><i class="fa fa-minus-square" (click)="deleteProduct(pitem.id)"></i><span class="tooltipp">Delete</span></button>
+          <button class="quick-view"><i class="fa fa-edit" (click)="updateProduct(pitem.id)"></i><span class="tooltipp">Update</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-inputProduct">
+  <form [formGroup]="productProfile" (ngSubmit)="OnSubmit(productProfile)" novalidate>
+    <label>Product Name
+      <input type="text" formControlName="nameProduct">
+    </label>
+    <hr>
+    <label>Product Price
+      <input type="number" formControlName="priceProduct">
+    </label>
+    <hr>
+    <label>Product Inc
+      <input type="text" formControlName="manuProd">
+    </label>
+    <br>
+    <label>Product Type
+      <p *ngIf="selectType != '' ">{{selectType}}</p>
+      <mat-form-field>
+        <mat-select placeholder="Type of Product" formControlName="typeProduct">
+          <mat-option *ngFor="let type of typeProducts" [(value)]="type.viewValue">
+            {{type.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </label>
+    <br>
+    <label>Product Image
+      <img src="../../assets/img/{{srcImg}}" *ngIf="srcImg != ''">
+      <input type="file" formControlName="imgProd" (change)="onFileSelected($event)">
+    </label>
+    <br>
+    <label>Day Manufacture
+      <mat-form-field>
+        <input matInput [matDatepicker]="dManuPicker" placeholder="Choose a Date" formControlName="dManu">
+        <mat-datepicker-toggle matSuffix [for]="dManuPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dManuPicker></mat-datepicker>
+      </mat-form-field>
+    </label>
+    <br>
+    <label>Day Expire
+      <mat-form-field>
+        <input matInput [matDatepicker]="dExpirePicker" placeholder="Choose a Date" formControlName="dExpire">
+        <mat-datepicker-toggle matSuffix [for]="dExpirePicker"></mat-datepicker-toggle>
+        <mat-datepicker #dExpirePicker></mat-datepicker>
+      </mat-form-field>
+    </label>
+    <br>
+    <button type="submit">Add Product</button>
+  </form>
+</div>
