@@ -72,13 +72,13 @@ namespace Neo4j
             return list;
         }
 
-        public void AddNewFactor(string factor, string features, string id, string name, string species)
+        public void AddNewFactor(string factor, string features, int id, string name, string species)
         {
             using (var session = _driver.Session())
             {
                 session.WriteTransaction(t =>
                 {
-                    t.Run("Create (p:"+factor+"{"+factor.Substring(0,factor.Length-1)+"ID:$id, Name:$name , Species:$species, Features:$features }) ", new {id,name,species,features});
+                    t.Run("Create (p:"+factor+"{"+factor.Substring(0,factor.Length-1)+"ID:"+id+", Name:$name , Species:$species, Features:$features }) ", new {name,species,features});
                 });
             }
         }
@@ -89,7 +89,7 @@ namespace Neo4j
             Console.WriteLine(factor);
             using (var session = _driver.Session()) {
                 session.WriteTransaction(t => {
-                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:'"+id+"'}) detach delete p");
+                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:"+id+"f}) detach delete p");
                 });
             }
         }
@@ -110,6 +110,35 @@ namespace Neo4j
                     Console.WriteLine(query);
                     tx.Run(query, new { id, feature, name, species });
                 });
+            }
+        }
+
+        public List<object> Search(string factor,string property, string pattern)
+        {
+            List<object> list = new List<object>();
+            if (pattern != "")
+            {
+                using (var session = _driver.Session())
+                {
+                    session.WriteTransaction(tx =>
+                    {
+                        string prop = property;
+                        pattern = (prop == "ID") ? pattern : ("'" + pattern + "'");
+                        prop = (prop == "ID") ? (factor.Substring(0, factor.Length - 1) + "ID") : (prop);
+
+                        var  result = tx.Run("match ( n:" + factor + ") where n." + prop + "="+ pattern + " return n");
+                   
+                        foreach (var record in result)
+                        {
+                            var nodeProps = JsonConvert.SerializeObject(record[0].As<INode>().Properties);
+                            list.Add(JsonConvert.DeserializeObject<object>(nodeProps));
+                        }
+                    });
+                }
+                return list;
+            }
+            else {
+                return GetFactorDataByLabel(factor);
             }
         }
     }

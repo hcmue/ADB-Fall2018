@@ -31,10 +31,11 @@ namespace Neo4j
 
             cbFactor.DataSource= db.GetAllFactorLabels();
             string select = cbFactor.Text;
-            cbRelationship.DataSource = db.GetFactorRelationShipByLabel(select);
+            cbRelationship.DataSource = db.GetFactorRelationShipByLabel(select);           
             dgvGraph.DataSource = db.GetFactorDataByLabel(select);
             panelAdd.Hide();
             panelChange.Hide();
+            panelSearch.Hide();
         }
 
        
@@ -61,8 +62,9 @@ namespace Neo4j
 
         private void btnAddCommit_Click(object sender, EventArgs e)
         {
-            string id, name, species, feature,factor;
-            id = txtID.Text;
+            string  name, species, feature,factor;
+            int id;
+            id = Convert.ToInt32(txtID.Text);
             name = txtName.Text;
             species = txtSpecies.Text;
             feature = txtFeature.Text;
@@ -134,6 +136,30 @@ namespace Neo4j
             dgvGraph.DataSource = db.GetFactorDataByLabel(factor);
             dgvGraph.Refresh();
             panelChange.Hide();
+            panelData.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            cbProperties.DataSource = new string[] { "ID", "Feature", "Name", "Species"};
+            panelData.Hide();
+            panelSearch.Show();
+        }
+
+        private void btnSearchBack_Click(object sender, EventArgs e)
+        {
+            panelSearch.Hide();
+            panelData.Show();
+        }
+
+        private void btnSearchCommit_Click(object sender, EventArgs e)
+        {
+            string pattern = txtPattern.Text;
+            string property = cbProperties.Text;
+            string factor = cbFactor.Text;
+            dgvGraph.DataSource = db.Search(factor,property, pattern);
+            dgvGraph.Refresh();
+            panelSearch.Hide();
             panelData.Show();
         }
     }

@@ -60,10 +60,18 @@
             this.txtSpeciesChange = new System.Windows.Forms.TextBox();
             this.txtIDChange = new System.Windows.Forms.TextBox();
             this.txtFeatureChange = new System.Windows.Forms.TextBox();
+            this.panelSearch = new System.Windows.Forms.Panel();
+            this.cbProperties = new System.Windows.Forms.ComboBox();
+            this.btnSearchCommit = new System.Windows.Forms.Button();
+            this.btnSearchBack = new System.Windows.Forms.Button();
+            this.txtPattern = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGraph)).BeginInit();
             this.panelData.SuspendLayout();
             this.panelAdd.SuspendLayout();
             this.panelChange.SuspendLayout();
+            this.panelSearch.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvGraph
@@ -147,6 +155,7 @@
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panelData
             // 
@@ -358,11 +367,68 @@
             this.txtFeatureChange.Size = new System.Drawing.Size(367, 20);
             this.txtFeatureChange.TabIndex = 0;
             // 
+            // panelSearch
+            // 
+            this.panelSearch.Controls.Add(this.groupBox1);
+            this.panelSearch.Controls.Add(this.btnSearchBack);
+            this.panelSearch.Controls.Add(this.btnSearchCommit);
+            this.panelSearch.Location = new System.Drawing.Point(44, 92);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(313, 123);
+            this.panelSearch.TabIndex = 12;
+            // 
+            // cbProperties
+            // 
+            this.cbProperties.FormattingEnabled = true;
+            this.cbProperties.Location = new System.Drawing.Point(6, 25);
+            this.cbProperties.Name = "cbProperties";
+            this.cbProperties.Size = new System.Drawing.Size(121, 21);
+            this.cbProperties.TabIndex = 3;
+            // 
+            // btnSearchCommit
+            // 
+            this.btnSearchCommit.Location = new System.Drawing.Point(223, 48);
+            this.btnSearchCommit.Name = "btnSearchCommit";
+            this.btnSearchCommit.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchCommit.TabIndex = 4;
+            this.btnSearchCommit.Text = "Search";
+            this.btnSearchCommit.UseVisualStyleBackColor = true;
+            this.btnSearchCommit.Click += new System.EventHandler(this.btnSearchCommit_Click);
+            // 
+            // btnSearchBack
+            // 
+            this.btnSearchBack.Location = new System.Drawing.Point(223, 84);
+            this.btnSearchBack.Name = "btnSearchBack";
+            this.btnSearchBack.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchBack.TabIndex = 5;
+            this.btnSearchBack.Text = "Back";
+            this.btnSearchBack.UseVisualStyleBackColor = true;
+            this.btnSearchBack.Click += new System.EventHandler(this.btnSearchBack_Click);
+            // 
+            // txtPattern
+            // 
+            this.txtPattern.Location = new System.Drawing.Point(6, 60);
+            this.txtPattern.Name = "txtPattern";
+            this.txtPattern.Size = new System.Drawing.Size(100, 20);
+            this.txtPattern.TabIndex = 8;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbProperties);
+            this.groupBox1.Controls.Add(this.txtPattern);
+            this.groupBox1.Location = new System.Drawing.Point(17, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Properties";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 414);
+            this.ClientSize = new System.Drawing.Size(1076, 457);
+            this.Controls.Add(this.panelSearch);
             this.Controls.Add(this.panelChange);
             this.Controls.Add(this.panelAdd);
             this.Controls.Add(this.panelData);
@@ -382,6 +448,9 @@
             this.panelAdd.PerformLayout();
             this.panelChange.ResumeLayout(false);
             this.panelChange.PerformLayout();
+            this.panelSearch.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,6 +490,12 @@
         private System.Windows.Forms.TextBox txtSpeciesChange;
         private System.Windows.Forms.TextBox txtIDChange;
         private System.Windows.Forms.TextBox txtFeatureChange;
+        private System.Windows.Forms.Panel panelSearch;
+        private System.Windows.Forms.ComboBox cbProperties;
+        private System.Windows.Forms.TextBox txtPattern;
+        private System.Windows.Forms.Button btnSearchBack;
+        private System.Windows.Forms.Button btnSearchCommit;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
