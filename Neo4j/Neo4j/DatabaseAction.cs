@@ -72,18 +72,19 @@ namespace Neo4j
             return list;
         }
 
-        public void AddNewFactor(string factor, string features, int id, string name, string species)
+        public void AddNewFactor(string factor, string features, string id, string name, string species)
         {
             using (var session = _driver.Session())
             {
                 session.WriteTransaction(t =>
                 {
-                    t.Run("Create (p:"+factor+"{"+factor.Substring(0,factor.Length-1)+"ID:"+id+", Name:$name , Species:$species, Features:$features }) ", new {name,species,features});
+                    //Console.WriteLine("Create (p:" + factor + "{" + factor.Substring(0, factor.Length - 1) + "ID:" + id.ToString() + ", Name:$name , Species:$species, Features:$features }) ");
+                    t.Run("Create (p:"+factor+"{"+factor.Substring(0,factor.Length-1)+"ID:$id, Name:$name , Species:$species, Features:$features }) ", new {id,name,species,features});
                 });
             }
         }
 
-        public void AddNewFactorWithID(string factor, string features, int id, string name, string species)
+        public void AddNewFactorWithID(string factor, string features, string id, string name, string species)
         {
             using (var session = _driver.Session())
             {
@@ -103,13 +104,13 @@ namespace Neo4j
             }
         }
 
-        public void DeleteFactorByID(int id,string factor)
+        public void DeleteFactorByID(string id,string factor)
         {
             Console.WriteLine(id);
             Console.WriteLine(factor);
             using (var session = _driver.Session()) {
                 session.WriteTransaction(t => {
-                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:"+id+"}) detach delete p");
+                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:'"+id+"'}) detach delete p");
                 });
             }
         }
@@ -146,8 +147,8 @@ namespace Neo4j
                         pattern = (prop == "ID") ? pattern : ("'" + pattern + "'");
                         prop = (prop == "ID") ? (factor.Substring(0, factor.Length - 1) + "ID") : (prop);
 
-                        var  result = tx.Run("match ( n:" + factor + ") where n." + prop + "="+ pattern + " return n");
-                   
+                        var  result = tx.Run("match (n:" + factor + ") where n." + prop + "='"+ pattern + "' return n");
+                        Console.WriteLine("match (n:" + factor + ") where n." + prop + "='" + pattern + "' return n");
                         foreach (var record in result)
                         {
                             Console.WriteLine(JsonConvert.SerializeObject(record));
@@ -159,6 +160,35 @@ namespace Neo4j
                 return list;
             }
             else {
+                return GetFactorDataByLabel(factor);
+            }
+        }
+        public List<object> SearchByRelationship(string factor, string property, string pattern, string relation)
+        {
+            List<object> list = new List<object>();
+            if (pattern != "")
+            {
+                using (var session = _driver.Session())
+                {
+                    session.WriteTransaction(tx =>
+                    {
+                        string prop = property;
+                        pattern = (prop == "ID") ? pattern : ("'" + pattern + "'");
+                        prop = (prop == "ID") ? (factor.Substring(0, factor.Length - 1) + "ID") : (prop);
+                        Console.WriteLine("match (n:" + factor + ") -[r:" + relation + "]-(i) where n." + prop + "='" + pattern + "' return distinct i");
+                        var result = tx.Run("match (n:" + factor + ") -[r:" + relation + "]->(i) where n." + prop + "='" + pattern + "' return i");
+
+                        foreach (var record in result)
+                        {
+                            var nodeProps = JsonConvert.SerializeObject(record[0].As<INode>().Properties);
+                            list.Add(JsonConvert.DeserializeObject<object>(nodeProps));
+                        }
+                    });
+                }
+                return list;
+            }
+            else
+            {
                 return GetFactorDataByLabel(factor);
             }
         }

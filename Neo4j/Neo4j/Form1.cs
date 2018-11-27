@@ -62,9 +62,8 @@ namespace Neo4j
 
         private void btnAddCommit_Click(object sender, EventArgs e)
         {
-            string  name, species, feature,factor;
-            int id;
-            id = Convert.ToInt32(txtID.Text);
+            string name, species, feature, factor, id;
+            id = txtID.Text;
             name = txtName.Text;
             species = txtSpecies.Text;
             feature = txtFeature.Text;
@@ -83,7 +82,7 @@ namespace Neo4j
                 string factor = cbFactor.Text;
                 string factorname = factor.Substring(0, factor.Length - 1)+"ID";
                 int rowindex = dgvGraph.SelectedCells[0].RowIndex;
-                int id = Convert.ToInt32(dgvGraph.Rows[rowindex].Cells[factorname].Value.ToString());
+                string id = dgvGraph.Rows[rowindex].Cells[factorname].Value.ToString();
               
                 db.DeleteFactorByID(id,factor);
                 dgvGraph.DataSource = db.GetFactorDataByLabel(factor);
@@ -158,6 +157,18 @@ namespace Neo4j
             string property = cbProperties.Text;
             string factor = cbFactor.Text;
             dgvGraph.DataSource = db.Search(factor,property, pattern);
+            dgvGraph.Refresh();
+            panelSearch.Hide();
+            panelData.Show();
+        }
+
+        private void btnSearchByRelationShip_Click(object sender, EventArgs e)
+        {
+            string pattern = txtPattern.Text;
+            string property = cbProperties.Text;
+            string factor = cbFactor.Text;
+            string relation = cbRelationship.Text;
+            dgvGraph.DataSource = db.SearchByRelationship(factor, property, pattern,relation);
             dgvGraph.Refresh();
             panelSearch.Hide();
             panelData.Show();

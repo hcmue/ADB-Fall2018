@@ -61,11 +61,12 @@
             this.txtIDChange = new System.Windows.Forms.TextBox();
             this.txtFeatureChange = new System.Windows.Forms.TextBox();
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.cbProperties = new System.Windows.Forms.ComboBox();
-            this.btnSearchCommit = new System.Windows.Forms.Button();
-            this.btnSearchBack = new System.Windows.Forms.Button();
-            this.txtPattern = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbProperties = new System.Windows.Forms.ComboBox();
+            this.txtPattern = new System.Windows.Forms.TextBox();
+            this.btnSearchBack = new System.Windows.Forms.Button();
+            this.btnSearchCommit = new System.Windows.Forms.Button();
+            this.btnSearchByRelationShip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGraph)).BeginInit();
             this.panelData.SuspendLayout();
             this.panelAdd.SuspendLayout();
@@ -369,6 +370,7 @@
             // 
             // panelSearch
             // 
+            this.panelSearch.Controls.Add(this.btnSearchByRelationShip);
             this.panelSearch.Controls.Add(this.groupBox1);
             this.panelSearch.Controls.Add(this.btnSearchBack);
             this.panelSearch.Controls.Add(this.btnSearchCommit);
@@ -376,41 +378,6 @@
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(313, 123);
             this.panelSearch.TabIndex = 12;
-            // 
-            // cbProperties
-            // 
-            this.cbProperties.FormattingEnabled = true;
-            this.cbProperties.Location = new System.Drawing.Point(6, 25);
-            this.cbProperties.Name = "cbProperties";
-            this.cbProperties.Size = new System.Drawing.Size(121, 21);
-            this.cbProperties.TabIndex = 3;
-            // 
-            // btnSearchCommit
-            // 
-            this.btnSearchCommit.Location = new System.Drawing.Point(223, 48);
-            this.btnSearchCommit.Name = "btnSearchCommit";
-            this.btnSearchCommit.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchCommit.TabIndex = 4;
-            this.btnSearchCommit.Text = "Search";
-            this.btnSearchCommit.UseVisualStyleBackColor = true;
-            this.btnSearchCommit.Click += new System.EventHandler(this.btnSearchCommit_Click);
-            // 
-            // btnSearchBack
-            // 
-            this.btnSearchBack.Location = new System.Drawing.Point(223, 84);
-            this.btnSearchBack.Name = "btnSearchBack";
-            this.btnSearchBack.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchBack.TabIndex = 5;
-            this.btnSearchBack.Text = "Back";
-            this.btnSearchBack.UseVisualStyleBackColor = true;
-            this.btnSearchBack.Click += new System.EventHandler(this.btnSearchBack_Click);
-            // 
-            // txtPattern
-            // 
-            this.txtPattern.Location = new System.Drawing.Point(6, 60);
-            this.txtPattern.Name = "txtPattern";
-            this.txtPattern.Size = new System.Drawing.Size(100, 20);
-            this.txtPattern.TabIndex = 8;
             // 
             // groupBox1
             // 
@@ -423,11 +390,56 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Properties";
             // 
+            // cbProperties
+            // 
+            this.cbProperties.FormattingEnabled = true;
+            this.cbProperties.Location = new System.Drawing.Point(6, 25);
+            this.cbProperties.Name = "cbProperties";
+            this.cbProperties.Size = new System.Drawing.Size(121, 21);
+            this.cbProperties.TabIndex = 3;
+            // 
+            // txtPattern
+            // 
+            this.txtPattern.Location = new System.Drawing.Point(6, 60);
+            this.txtPattern.Name = "txtPattern";
+            this.txtPattern.Size = new System.Drawing.Size(100, 20);
+            this.txtPattern.TabIndex = 8;
+            // 
+            // btnSearchBack
+            // 
+            this.btnSearchBack.Location = new System.Drawing.Point(223, 84);
+            this.btnSearchBack.Name = "btnSearchBack";
+            this.btnSearchBack.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchBack.TabIndex = 5;
+            this.btnSearchBack.Text = "Back";
+            this.btnSearchBack.UseVisualStyleBackColor = true;
+            this.btnSearchBack.Click += new System.EventHandler(this.btnSearchBack_Click);
+            // 
+            // btnSearchCommit
+            // 
+            this.btnSearchCommit.Location = new System.Drawing.Point(223, 53);
+            this.btnSearchCommit.Name = "btnSearchCommit";
+            this.btnSearchCommit.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchCommit.TabIndex = 4;
+            this.btnSearchCommit.Text = "Search";
+            this.btnSearchCommit.UseVisualStyleBackColor = true;
+            this.btnSearchCommit.Click += new System.EventHandler(this.btnSearchCommit_Click);
+            // 
+            // btnSearchByRelationShip
+            // 
+            this.btnSearchByRelationShip.Location = new System.Drawing.Point(223, 21);
+            this.btnSearchByRelationShip.Name = "btnSearchByRelationShip";
+            this.btnSearchByRelationShip.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchByRelationShip.TabIndex = 10;
+            this.btnSearchByRelationShip.Text = "Search (R)";
+            this.btnSearchByRelationShip.UseVisualStyleBackColor = true;
+            this.btnSearchByRelationShip.Click += new System.EventHandler(this.btnSearchByRelationShip_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 457);
+            this.ClientSize = new System.Drawing.Size(683, 372);
             this.Controls.Add(this.panelSearch);
             this.Controls.Add(this.panelChange);
             this.Controls.Add(this.panelAdd);
@@ -496,6 +508,7 @@
         private System.Windows.Forms.Button btnSearchBack;
         private System.Windows.Forms.Button btnSearchCommit;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnSearchByRelationShip;
     }
 }
 
