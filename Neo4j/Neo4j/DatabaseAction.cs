@@ -83,13 +83,33 @@ namespace Neo4j
             }
         }
 
+        public void AddNewFactorWithID(string factor, string features, int id, string name, string species)
+        {
+            using (var session = _driver.Session())
+            {
+                // get unique id
+                string query="MERGE(id: UniqueId{ name: "+factor+"})"+
+                "ON CREATE SET id.count = 1"+
+                "ON MATCH SET id.count = id.count + 1"+
+                "WITH id.count AS uid"+
+                // create Person node
+                "CREATE(p:"+factor+ "{"+ factor.Substring(0, factor.Length - 1) + "ID: uid, Features:" + features/*add all properties*/+"})"+
+                "RETURN p AS "+factor;
+
+                session.WriteTransaction(t =>
+                {
+                    t.Run(query);
+                });
+            }
+        }
+
         public void DeleteFactorByID(int id,string factor)
         {
             Console.WriteLine(id);
             Console.WriteLine(factor);
             using (var session = _driver.Session()) {
                 session.WriteTransaction(t => {
-                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:"+id+"f}) detach delete p");
+                    t.Run("match(p:"+factor+"{"+ factor.Substring(0, factor.Length - 1)+"ID:"+id+"}) detach delete p");
                 });
             }
         }
@@ -130,6 +150,7 @@ namespace Neo4j
                    
                         foreach (var record in result)
                         {
+                            Console.WriteLine(JsonConvert.SerializeObject(record));
                             var nodeProps = JsonConvert.SerializeObject(record[0].As<INode>().Properties);
                             list.Add(JsonConvert.DeserializeObject<object>(nodeProps));
                         }
