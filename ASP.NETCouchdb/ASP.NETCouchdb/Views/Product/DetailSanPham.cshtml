@@ -1,0 +1,58 @@
+﻿@model ASP.NETCouchdb.Models.SanPham
+
+@{
+    ViewBag.Title = "DetailSanPham";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetailSanPham</title>
+</head>
+<body>
+    <div class="agileinfo_single">
+        @{
+            var hh = Model;
+        }
+        <div class="col-md-4 agileinfo_single_left">
+            <img src="~/Content/images/@hh.Hinh" alt=" " class="img-responsive">
+        </div>
+        <div class="col-md-8 agileinfo_single_right">
+            <h2>@hh.TenSanPham</h2>
+            <div class="rating1">
+                <span class="starRating">
+                    <input id="rating5" type="radio" name="rating" value="5">
+                    <label for="rating5">5</label>
+                    <input id="rating4" type="radio" name="rating" value="4">
+                    <label for="rating4">4</label>
+                    <input id="rating3" type="radio" name="rating" value="3" checked="">
+                    <label for="rating3">3</label>
+                    <input id="rating2" type="radio" name="rating" value="2">
+                    <label for="rating2">2</label>
+                    <input id="rating1" type="radio" name="rating" value="1">
+                    <label for="rating1">1</label>
+                </span>
+            </div>
+            <div class="w3agile_description">
+                <h4>Mô tả :</h4>
+                <p>
+                    @hh.MoTa
+                </p>
+            </div>
+            <div class="w3agile_description">
+                <h4>Type</h4>
+                <p>
+                    @hh.Type
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center">
+    @Html.ActionLink("Edit", "EditSanPham", new { id = Model.TenSanPham }) |
+    @Html.ActionLink("Back to List", "Index")
+    </div>
+   
+</body>
+</html>

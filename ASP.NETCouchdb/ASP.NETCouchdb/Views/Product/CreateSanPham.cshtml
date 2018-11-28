@@ -1,0 +1,82 @@
+﻿@model ASP.NETCouchdb.Models.SanPham
+
+@{
+    ViewBag.Title = "CreateSanPham";
+}
+
+<!DOCTYPE html>
+
+<form action="CreateSanPham" method="post" enctype="multipart/form-data">
+    <div>
+        <h4>Thêm sản phẩm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenSanPham)
+            </dt>
+
+            <dd>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </dd>
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </dt>
+
+            <dd>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </dd>
+
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.Hinh)
+            </dt>
+
+            <dd>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="file" name="file" id="file_upload"/>
+                    </div>
+                </div>
+            </dd>
+            
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </dd>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" id="btnsave" class="btn btn-default" />
+                </div>
+            </div>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</form>
+
+@section upload{
+   
+}
+

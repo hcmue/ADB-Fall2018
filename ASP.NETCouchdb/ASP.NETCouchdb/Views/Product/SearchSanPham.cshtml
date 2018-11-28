@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ASP.NETCouchdb.Models.SanPham>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="breadcrumbs">
+    <div class="container col-md-9">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Sản phẩm</li>
+        </ol>
+    </div>
+
+</div>
+<br />
+
+<div class="row">
+    <div>
+        <div class="col-md-4" style="float:left">
+            @Html.ActionLink("Thêm", "CreateSanPham")
+        </div>
+        <div class="col-md-5">
+
+            <form action="/Product/SearchSanPham" method="get">
+                <input type="search" name="txtsearch" placeholder="Tìm kiếm sản phẩm..." required="" class="form-control col-md-3">
+                <input type="submit" value="Tìm" class="btn btn-default" />
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                <img src="~/Content/images/@Model.Hinh" alt="Alternate Text" style="width:70px;height:70px;"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "EditSanPham", new { id = item.TenSanPham }) |
+                @Html.ActionLink("Chi tiết", "DetailSanPham", new { id = item.TenSanPham }) |
+                @Html.ActionLink("Xóa", "DeleteSanPham", new { id = item.TenSanPham })
+            </td>
+        </tr>
+    }
+
+</table>
+

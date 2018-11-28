@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NETCouchdb", "ASP.NETCouchdb\ASP.NETCouchdb.csproj", "{624036AC-66BD-444E-B6FF-78BBB31DBDD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EStore2", "..\..\MVC.NET Core\EStore2\EStore2\EStore2.csproj", "{9779C561-51CC-4A63-B4AB-3910C583EF42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{624036AC-66BD-444E-B6FF-78BBB31DBDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624036AC-66BD-444E-B6FF-78BBB31DBDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624036AC-66BD-444E-B6FF-78BBB31DBDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624036AC-66BD-444E-B6FF-78BBB31DBDD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9779C561-51CC-4A63-B4AB-3910C583EF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9779C561-51CC-4A63-B4AB-3910C583EF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9779C561-51CC-4A63-B4AB-3910C583EF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9779C561-51CC-4A63-B4AB-3910C583EF42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D6CAC10-79B9-4B77-BBB5-7EDFC804464D}
+	EndGlobalSection
+EndGlobal
